@@ -1,0 +1,19 @@
+apiVersion: kpt.dev/v1
+kind: Kptfile
+metadata:
+  name: gitea
+  namespace: openshift-gitops
+  annotations:
+    config.kubernetes.io/local-config: "true"
+upstream:
+  type: git
+  git:
+    repo: https://github.com/nephio-project/nephio-example-packages.git
+    directory: gitea
+    ref: 6c95409da73d01c6cb4ff430df5a879688d6b195
+info:
+  description: Gitea package to deploy a gitea server in a gitea namespace
+pipeline:
+  mutators:
+    - image: gcr.io/kpt-fn/apply-replacements:v0.1.1
+      configPath: apply-replacements.yaml

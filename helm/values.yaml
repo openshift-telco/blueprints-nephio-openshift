@@ -1,0 +1,22 @@
+config:
+  repoURL: https://github.com/openshift-telco/blueprints-nephio-openshift.git
+
+blueprints:
+  argocd-kpt-config:
+    enabled: true
+  gitea:
+    enabled: true
+  configsync:
+    enabled: true
+  porch:
+    enabled: true
+  network-config:
+    enabled: true
+  resource-backend:
+    enabled: true
+  nephio-controllers:
+    enabled: true
+  stock-repos:
+    enabled: true
+  nephio-webui:
+    enabled: true

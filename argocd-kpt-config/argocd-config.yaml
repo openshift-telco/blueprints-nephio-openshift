@@ -1,0 +1,45 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ArgoCD
+metadata:
+  name: openshift-gitops
+  namespace: openshift-gitops
+  annotations:
+    argocd.argoproj.io/sync-options: ServerSideApply=true
+spec:
+  repo:
+    volumes:
+      - name: kpt-cache
+        emptyDir: {}
+      - name: cmp-tmp
+        emptyDir: {}
+      - name: kustomize
+        emptyDir: {}
+    sidecarContainers:
+      - command:
+          - /var/run/argocd/argocd-cmp-server
+        image: quay.io/adetalho/argocd-ktp-nephio-cmd:0.0.1
+        imagePullPolicy: Always
+        name: cmp-kpt
+        resources:
+          limits:
+            cpu: 2
+            memory: 1Gi
+          requests:
+            cpu: 1
+            memory: 512Mi
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+              - ALL
+          readOnlyRootFilesystem: true
+        volumeMounts:
+          - mountPath: /var/run/argocd
+            name: var-files
+          - mountPath: /home/argocd/cmp-server/plugins
+            name: plugins
+          - mountPath: /tmp
+            name: cmp-tmp
+          - mountPath: /.kpt
+            name: kpt-cache
