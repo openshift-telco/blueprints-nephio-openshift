@@ -11,30 +11,11 @@ replacements:
     fieldPath: data.name
   targets:
   - select:
-      kind: PackageVariant
-    fieldPaths:
-    - spec.injectors.[kind=WorkloadCluster].name
-    - spec.pipeline.mutators.[image=gcr.io/kpt-fn/set-annotations:v0.1.4].configMap.[nephio.org/cluster-name]
-  - select:
-      kind: WorkloadCluster
-    fieldPaths:
-    - metadata.name
-    - spec.clusterName
-  - select:
       kind: ConfigMap
       name: setters
     fieldPaths:
     - data.name
     - data.cluster-name
-- source:
-    kind: ConfigMap
-    name: openshift-context
-    fieldPath: metadata.annotations.[kpt.dev/injected-resource]
-  targets:
-  - select:
-      kind: PackageVariant
-    fieldPaths:
-    - spec.injectors.0.name
 - source:
     kind: ConfigMap
     name: openshift-context

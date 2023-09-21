@@ -1,8 +1,8 @@
 apiVersion: infra.nephio.org/v1alpha1
 kind: WorkloadCluster
 metadata:
-  name: ca-montreal
+  name: example
 spec:
   # Since injection only injects the spec, we need the name here as
   # well as in metadata.
-  clusterName: ca-montreal
+  clusterName: example

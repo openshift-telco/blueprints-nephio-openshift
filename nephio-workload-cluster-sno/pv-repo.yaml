@@ -1,17 +1,17 @@
 apiVersion: config.porch.kpt.dev/v1alpha1
 kind: PackageVariant
 metadata:
-  name: example-repo
+  name: example-repo # kpt-set: ${cluster-name}-repo
 spec:
   annotations:
     approval.nephio.org/policy: initial
   upstream:
-    package: repository
-    repo: nephio-example-packages
-    revision: v3
+    repo: openshift-packages-main
+    package: nephio-repo
+    revision: main
   downstream:
-    package: example-repo
-    repo: mgmt
+    package: example-repo # kpt-set: ${cluster-name}-repo
+    repo: management
   injectors:
   - kind: WorkloadCluster
     name: example

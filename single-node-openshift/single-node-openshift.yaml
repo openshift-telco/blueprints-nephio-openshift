@@ -1,19 +1,21 @@
 apiVersion: ran.openshift.io/v1
 kind: SiteConfig
 metadata:
-  name: "single-node-openshift" # kpt-set: ${clusterName}
-  namespace: "" # kpt-set: ${clusterName}
+  name: "single-node-openshift" # kpt-set: ${cluster-name}
+  namespace: "" # kpt-set: ${cluster-name}
+  annotations:
+    config.kubernetes.io/local-config: "true"
 spec:
-  baseDomain: "" # kpt-set: ${baseDomain}
+  baseDomain: "" # kpt-set: ${base-domain}
   pullSecretRef:
     name: "assisted-deployment-pull-secret"
-  clusterImageSetNameRef: "" # kpt-set: ${releaseImageName}
-  sshPublicKey: "" # kpt-set: ${sshPubKey}
+  clusterImageSetNameRef: "" # kpt-set: ${release-image-name}
+  sshPublicKey: "" # kpt-set: ${ssh-pub-key}
   clusters:
-  - clusterName: "" # kpt-set: ${clusterName}
+  - clusterName: "" # kpt-set: ${cluster-name}
     networkType: "OVNKubernetes"
     clusterLabels:
-      sites: "" # kpt-set: ${clusterName}
+      sites: "" # kpt-set: ${cluster-name}
       common: "true"
     clusterNetwork:
     - cidr: "10.128.0.0/14"
@@ -21,12 +23,13 @@ spec:
     serviceNetwork:
     - "172.30.0.0/16"
     machineNetwork:
-    - cidr: "" # kpt-set: ${machineNetwork}
+    - cidr: "" # kpt-set: ${machine-network}
     cpuPartitioningMode: AllNodes
     nodes:
-    - hostName: "" # kpt-set: ${clusterName}-node1
+    - hostName: "" # kpt-set: ${cluster-name}-node1
       role: "master"
-      bmcAddress: "" # kpt-set: ${bmcAddress}
+      ironicInspect: "disabled"
+      bmcAddress: "" # kpt-set: ${bmc-address}
       bmcCredentialsName:
         name: "bmh-secret"
-      bootMACAddress: "" # kpt-set: ${bmcBootMACAddress}
+      bootMACAddress: "" # kpt-set: ${bmc-boot-mac-address}
