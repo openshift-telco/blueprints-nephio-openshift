@@ -1,0 +1,32 @@
+apiVersion: ran.openshift.io/v1
+kind: SiteConfig
+metadata:
+  name: "single-node-openshift" # kpt-set: ${clusterName}
+  namespace: "" # kpt-set: ${clusterName}
+spec:
+  baseDomain: "" # kpt-set: ${baseDomain}
+  pullSecretRef:
+    name: "assisted-deployment-pull-secret"
+  clusterImageSetNameRef: "" # kpt-set: ${releaseImageName}
+  sshPublicKey: "" # kpt-set: ${sshPubKey}
+  clusters:
+  - clusterName: "" # kpt-set: ${clusterName}
+    networkType: "OVNKubernetes"
+    clusterLabels:
+      sites: "" # kpt-set: ${clusterName}
+      common: "true"
+    clusterNetwork:
+    - cidr: "10.128.0.0/14"
+      hostPrefix: 23
+    serviceNetwork:
+    - "172.30.0.0/16"
+    machineNetwork:
+    - cidr: "" # kpt-set: ${machineNetwork}
+    cpuPartitioningMode: AllNodes
+    nodes:
+    - hostName: "" # kpt-set: ${clusterName}-node1
+      role: "master"
+      bmcAddress: "" # kpt-set: ${bmcAddress}
+      bmcCredentialsName:
+        name: "bmh-secret"
+      bootMACAddress: "" # kpt-set: ${bmcBootMACAddress}

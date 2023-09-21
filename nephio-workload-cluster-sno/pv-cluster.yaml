@@ -1,0 +1,22 @@
+apiVersion: config.porch.kpt.dev/v1alpha1
+kind: PackageVariant
+metadata:
+  name: sno-cluster
+spec:
+  annotations:
+    approval.nephio.org/policy: initial
+  upstream:
+    repo: openshift-packages-wip
+    package: nephio-workload-cluster-sno
+    revision: wip
+  downstream:
+    package: sno
+    repo: sno
+  injectors:
+  - kind: ConfigMap
+    name: kptfile.kpt.dev
+  pipeline:
+    mutators:
+    - image: gcr.io/kpt-fn/set-annotations:v0.1.4
+      configMap:
+        nephio.org/cluster-name: ca-central

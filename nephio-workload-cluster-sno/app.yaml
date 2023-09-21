@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: clusters # kpt-set: ${clusterName}
+  namespace: openshift-gitops
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: clusters-sub # kpt-set: ${clusterName}
+  project: default
+  source:
+    path: _acmztp/siteconfig # kpt-set: ${clusterName}
+    repoURL: https://gitea-gitea.apps.ca-central.adetalhouet.ca/gitea/mgmt.git
+    targetRevision: main
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true

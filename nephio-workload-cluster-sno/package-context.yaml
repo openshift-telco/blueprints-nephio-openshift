@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kptfile.kpt.dev
+  annotations:
+    config.kubernetes.io/local-config: "true"
+data:
+  releaseImageName: openshift-v4.13.12
+  clusterName: ca-montreal
+  baseDomain: adetalhouet.ca
+  machineNetwork: 192.168.123.0/24
+  sshPubKey: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDFS0S+jf5OW7CDuwuJO46IpeunNc19oyXlRQwR6tBx67EPXAt3LxB/BMbyr8+MLMIErzaIUSvG70yk34cB4jbXrs8cbwSdxGPro3ZZqu9qT8+ILhEXtok6uUBG8OKlhIqrAm6Iq3hH1Kbgwj/72B9eaKIpNHzvrZSM/UNAYZzNvENuBGeWuO1kfxnhWmzp+eh+8vTPcYdLzJKv+BOQBxz6T8SI5By0TfvAvVS2xMmhMRMs1TBDLUBgzZgd06X0ghSaOimz4aVbmqI4WwClIy8ZiXhL/j1IkSF97qNo26yb/yYnyk+BqqrsOQIEQQcfzY+skpHQ1JiPjPVYHsujhgctFgwCR0/KKw2QcqOK67est5gDW3vaf/zIDhRnPdT2IhJQTQNEepRjKfHF2EgGIMSU4TosJ5ygx+q0oZ5ITcFHSiIK3aoOt2QXZPY+Dtork5zYbE2M3PLrgRrT1VW1eTH6v5GYjUDq95mwcKYBirSvd3QuUbrGjFQuxfCZlceUui0= adetalhouet@joatmon.localdomain"
+  pullSecret: ""
+  bmcAddress: redfish-virtualmedia+http://192.168.1.170:8000/redfish/v1/Systems/cd5535cc-a1b3-42f4-8938-0c344bb0646f
+  bmcUsername: "Ym9iCg=="
+  bmcPassword: "Ym9iCg=="
+  bmcBootMACAddress: 02:04:00:00:01:04
