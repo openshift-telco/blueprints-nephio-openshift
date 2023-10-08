@@ -1,0 +1,22 @@
+apiVersion: config.porch.kpt.dev/v1alpha1
+kind: PackageVariant
+metadata:
+  name: example-cluster  # kpt-set: ${cluster-name}-cluster
+spec:
+  annotations:
+    approval.nephio.org/policy: initial
+  upstream:
+    repo: openshift-packages-main
+    package: single-node-openshift
+    revision: main
+  downstream:
+    package: example # kpt-set: ${cluster-name}-cluster
+    repo: management
+  injectors:
+  - kind: ConfigMap
+    name: openshift-context
+  pipeline:
+    mutators:
+    - image: gcr.io/kpt-fn/set-annotations:v0.1.4
+      configMap:
+        nephio.org/cluster-name: example

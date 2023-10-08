@@ -1,0 +1,8 @@
+apiVersion: infra.nephio.org/v1alpha1
+kind: Repository
+metadata: 
+  name: example-repo
+  namespace: default
+spec:
+  description: example-repo repository
+  defaultBranch: main

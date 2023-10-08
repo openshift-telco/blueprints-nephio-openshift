@@ -18,8 +18,8 @@ spec:
     server: https://kubernetes.default.svc
   source:
     repoURL: {{ $.Values.config.repoURL }}
-    targetRevision: HEAD
-    path: {{ $key }}
+    targetRevision: main
+    path: nephio-mgnt/{{ $key }}
   syncPolicy:
     automated: 
       selfHeal: true 

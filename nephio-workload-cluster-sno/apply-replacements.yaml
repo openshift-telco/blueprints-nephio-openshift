@@ -1,0 +1,127 @@
+apiVersion: fn.kpt.dev/v1alpha1
+kind: ApplyReplacements
+metadata:
+  name: propagate-name
+  annotations:
+    config.kubernetes.io/local-config: "true"
+replacements:
+- source:
+    kind: ConfigMap
+    name: kptfile.kpt.dev
+    fieldPath: data.name
+  targets:
+  - select:
+      kind: PackageVariant
+    fieldPaths:
+    - spec.injectors.[kind=WorkloadCluster].name
+    - spec.pipeline.mutators.[image=gcr.io/kpt-fn/set-annotations:v0.1.4].configMap.[nephio.org/cluster-name]
+  - select:
+      kind: WorkloadCluster
+    fieldPaths:
+    - metadata.name
+    - spec.clusterName
+  - select:
+      kind: ConfigMap
+      name: setters
+    fieldPaths:
+    - data.name
+    - data.cluster-name
+# - source:
+#     kind: ConfigMap
+#     name: openshift-context
+#     fieldPath: metadata.annotations.[kpt.dev/injected-resource]
+#   targets:
+#   - select:
+#       kind: PackageVariant
+#     fieldPaths:
+#     - spec.injectors.0.name
+- source:
+    kind: ConfigMap
+    name: openshift-context
+    fieldPath: data.release-image-name
+  targets:
+  - select:
+      kind: ConfigMap
+      name: setters
+    fieldPaths:
+    - data.release-image-name
+- source:
+    kind: ConfigMap
+    name: openshift-context
+    fieldPath: data.base-domain
+  targets:
+  - select:
+      kind: ConfigMap
+      name: setters
+    fieldPaths:
+    - data.base-domain
+- source:
+    kind: ConfigMap
+    name: openshift-context
+    fieldPath: data.machine-network
+  targets:
+  - select:
+      kind: ConfigMap
+      name: setters
+    fieldPaths:
+    - data.machine-network
+- source:
+    kind: ConfigMap
+    name: openshift-context
+    fieldPath: data.ssh-pub-key
+  targets:
+  - select:
+      kind: ConfigMap
+      name: setters
+    fieldPaths:
+    - data.ssh-pub-key
+- source:
+    kind: ConfigMap
+    name: openshift-context
+    fieldPath: data.pull-secret
+  targets:
+  - select:
+      kind: ConfigMap
+      name: setters
+    fieldPaths:
+    - data.pull-secret
+- source:
+    kind: ConfigMap
+    name: openshift-context
+    fieldPath: data.bmc-address
+  targets:
+  - select:
+      kind: ConfigMap
+      name: setters
+    fieldPaths:
+    - data.bmc-address
+- source:
+    kind: ConfigMap
+    name: openshift-context
+    fieldPath: data.bmc-username
+  targets:
+  - select:
+      kind: ConfigMap
+      name: setters
+    fieldPaths:
+    - data.bmc-username
+- source:
+    kind: ConfigMap
+    name: openshift-context
+    fieldPath: data.bmc-password
+  targets:
+  - select:
+      kind: ConfigMap
+      name: setters
+    fieldPaths:
+    - data.bmc-password
+- source:
+    kind: ConfigMap
+    name: openshift-context
+    fieldPath: data.bmc-boot-mac-address
+  targets:
+  - select:
+      kind: ConfigMap
+      name: setters
+    fieldPaths:
+    - data.bmc-boot-mac-address
