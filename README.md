@@ -20,7 +20,7 @@ These packages provide all the required components to deploy Nephio R1 release.
 In you management cluster, apply the app of apps. This will create all the various component by pulling their respective kpt package from Nephio repos, and apply some OpenShift specific configuration. Each component is deployed one after the other through the use of sync-wave.
 
 ```
-kubectl apply -f app-of-apps.yaml
+kubectl apply -f nephio-mgnt/app-of-apps.yaml
 ```
 
 Once ArgoCD and our kpt plugin have fully rendered and applied the Nephio packages, you should have the following results in ArgoCD.
@@ -31,7 +31,7 @@ Once ArgoCD and our kpt plugin have fully rendered and applied the Nephio packag
 
 - Get the Nephio URL:
   ```
-  $ oc get route nephio -n nephio-webui -o=jsonpath=https://'{.spec.host}'
+  oc get route nephio -n nephio-webui -o=jsonpath=https://'{.spec.host}'
   ```
 
 - Login using your OpenShift login
@@ -40,7 +40,7 @@ Once ArgoCD and our kpt plugin have fully rendered and applied the Nephio packag
 
 - Get the Gitea URL:
   ```
-  $ oc get route gitea -n gitea -o=jsonpath=https://'{.spec.host}'
+  oc get route gitea -n gitea -o=jsonpath=https://'{.spec.host}'
   ```
 
 - Login
@@ -64,23 +64,25 @@ This repository is composed of 3 main elements:
     repoURL: https://github.com/adetalhouet/blueprints-nephio-openshift.git
 
   blueprints:
-    argocd-kpt-config:
+    00-argocd-kpt-config:
       enabled: true
-    gitea:
+    01-gitea:
       enabled: true
-    configsync:
+    02-configsync:
       enabled: true
-    porch:
+    03-porch:
       enabled: true
-    network-config:
+    04-network-config:
       enabled: true
-    resource-backend:
+    05-resource-backend:
       enabled: true
-    nephio-controllers:
+    06-nephio-controllers:
       enabled: true
-    stock-repos:
+    07-stock-repos:
       enabled: true
-    nephio-webui:
+    08-nephio-webui:
+      enabled: true
+    09-mgnt-config:
       enabled: true
   ```
 
