@@ -1,17 +1,17 @@
 apiVersion: config.porch.kpt.dev/v1alpha1
 kind: PackageVariant
 metadata:
-  name: example-repo # kpt-set: ${cluster-name}-repo
+  name: example-configsync # kpt-set: ${cluster-name}-configsync
 spec:
   annotations:
     approval.nephio.org/policy: initial
   upstream:
     repo: openshift-packages-main
-    package: nephio-repo
+    package: nephio-mgnt/02-configsync
     revision: main
   downstream:
-    package: example-repo # kpt-set: ${cluster-name}-repo
-    repo: management
+    package: example-configsync # kpt-set: ${cluster-name}-configsync
+    repo: management  # kpt-set: ${cluster-name}
   injectors:
   - kind: WorkloadCluster
     name: example # kpt-set: ${cluster-name}
@@ -20,6 +20,3 @@ spec:
     - image: gcr.io/kpt-fn/set-annotations:v0.1.4
       configMap:
         nephio.org/cluster-name: example
-    - image: gcr.io/kpt-fn/set-annotations:v0.1.4
-      configMap:
-        nephio.org/staging: example # kpt-set: ${cluster-name}-repo

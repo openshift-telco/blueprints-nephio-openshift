@@ -14,9 +14,10 @@ spec:
     repo: management
   injectors:
   - kind: ConfigMap
-    name: openshift-context
+    name: example
   pipeline:
     mutators:
     - image: gcr.io/kpt-fn/set-annotations:v0.1.4
       configMap:
         nephio.org/cluster-name: example
+        nephio.org/site-type: edge

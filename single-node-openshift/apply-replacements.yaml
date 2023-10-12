@@ -6,9 +6,12 @@ metadata:
     config.kubernetes.io/local-config: "true"
 replacements:
 - source:
-    kind: WorkloadCluster
-    name: example
-    fieldPath: spec.clusterName
+    kind: ConfigMap
+    name: kptfile.kpt.dev
+    fieldPath: data.name
+    options:
+      delimiter: '-cluster'
+      index: 0
   targets:
   - select:
       kind: ConfigMap

@@ -125,3 +125,12 @@ replacements:
       name: setters
     fieldPaths:
     - data.bmc-boot-mac-address
+- source:
+    kind: ConfigMap
+    name: openshift-context
+    fieldPath: metadata.annotations.[kpt.dev/injected-resource]
+  targets:
+  - select:
+      kind: PackageVariant
+    fieldPaths:
+    - spec.injectors.[kind=ConfigMap].name

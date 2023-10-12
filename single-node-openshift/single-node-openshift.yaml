@@ -1,7 +1,7 @@
 apiVersion: ran.openshift.io/v1
 kind: SiteConfig
 metadata:
-  name: "single-node-openshift" # kpt-set: ${cluster-name}
+  name: "single-node-openshift"
   namespace: "" # kpt-set: ${cluster-name}
   annotations:
     config.kubernetes.io/local-config: "true"
