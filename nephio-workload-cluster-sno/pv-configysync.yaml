@@ -6,9 +6,9 @@ spec:
   annotations:
     approval.nephio.org/policy: initial
   upstream:
-    repo: openshift-packages-main
-    package: nephio-mgnt/02-configsync
-    revision: main
+    package: configsync
+    repo: nephio-example-packages
+    revision: v1
   downstream:
     package: example-configsync # kpt-set: ${cluster-name}-configsync
     repo: management  # kpt-set: ${cluster-name}
