@@ -34,4 +34,4 @@ spec:
         name: "" # kpt-set: ${cluster-name}-sno-bmc-secret
       bootMACAddress: "" # kpt-set: ${bmc-boot-mac-address}
       rootDeviceHints:
-        deviceName: "/dev/vba"
+        deviceName: "/dev/vda"
