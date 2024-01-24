@@ -12,3 +12,6 @@ pipeline:
     configPath: apply-replacements.yaml
   - image: gcr.io/kpt-fn/apply-setters:v0.2.0
     configPath: setters.yaml
+  - image: gcr.io/kpt-fn/set-namespace:v0.4.1
+    configMap:
+      namespace: nephio-system
