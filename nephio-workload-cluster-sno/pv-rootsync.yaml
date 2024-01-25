@@ -9,7 +9,7 @@ spec:
   upstream:
     repo: openshift-packages-main
     package: nephio-rootsync
-    revision: main
+    revision: r2
   downstream:
     package: example-rootsync # kpt-set: ${cluster-name}-rootsync
     repo: management
