@@ -1,6 +1,6 @@
 apiVersion: config.porch.kpt.dev/v1alpha1
 kind: Repository
-metadata:
+metadata: # kpt-merge: nephio-system/openshift-packages-main
   name: openshift-packages-main
   namespace: default
   labels:
@@ -12,5 +12,5 @@ spec:
   git:
     branch: main
     directory: /
-    repo: https://github.com/openshift-telco/blueprints-nephio-openshift.git
+    repo: https://github.com/aprincipRedhat/blueprints-nephio-openshift.git
   type: git

@@ -12,4 +12,9 @@ upstream:
     directory: nephio-stock-repos
     ref: v1.0.1
 info:
-  description: Nephio Stock Repos controller
+  description: Some stock external repositories to start with
+pipeline:
+  mutators:
+    - image: gcr.io/kpt-fn/set-namespace:v0.4.1
+      configMap:
+        namespace: default

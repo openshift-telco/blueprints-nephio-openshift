@@ -23,6 +23,7 @@ COPY --from=gcr.io/kpt-fn/starlark:v0.4.3 /usr/local/bin/function /usr/local/bin
 COPY --from=gcr.io/kpt-fn/apply-replacements:v0.1.1 /usr/local/bin/function /usr/local/bin/apply-replacements-v0.1.1
 COPY --from=gcr.io/kpt-fn/search-replace:v0.2.0 /usr/local/bin/function /usr/local/bin/search-replace-v0.2.0
 COPY --from=gcr.io/kpt-fn/apply-setters:v0.2.0 /usr/local/bin/function /usr/local/bin/apply-setters-v0.2.0
+COPY --from=gcr.io/kpt-fn/set-namespace:v0.4.1 /usr/local/bin/function /usr/local/bin/set-namespace-v0.4.1
 
 # the plugin definition can also be mounted from a config map, if preffered
 COPY plugin.yaml /home/argocd/cmp-server/config/plugin.yaml

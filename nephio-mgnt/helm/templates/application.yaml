@@ -13,6 +13,13 @@ metadata:
     argocd.argoproj.io/compare-options: IgnoreExtraneous
     argocd.argoproj.io/sync-wave: {{ quote $c |}}
 spec:
+{{- if eq $key "01-gitea" }}
+  ignoreDifferences:
+  - group: "*"
+    kind: StatefulSet
+    jsonPointers:
+    - /spec/volumeClaimTemplates
+{{ end }}
   project: default
   destination:
     server: https://kubernetes.default.svc
@@ -24,9 +31,12 @@ spec:
     automated: 
       selfHeal: true 
       allowEmpty: true
+      prune: true
     syncOptions:
-      - Validate=true
+      - Validate=false
+      - ServerSideApply=true
       - CreateNamespace=true
+      - RespectIgnoreDifferences=true
     retry:
       limit: -1
       backoff:

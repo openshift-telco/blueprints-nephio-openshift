@@ -4,8 +4,6 @@ kind: PolicyGenTemplate
 metadata:
   name: "common"
   namespace: "ztp-common"
-  annotations:
-    config.kubernetes.io/local-config: "true"
 spec:
   bindingRules:
     # These policies will correspond to all clusters with this label:

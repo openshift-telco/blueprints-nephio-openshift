@@ -10,6 +10,7 @@ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 #############################################################################
 ```
 
+
 # Blueprint for Nephio deployment on OpenShift
   This repository provides standard Nephio packages for OpenShift-based installations.
 
