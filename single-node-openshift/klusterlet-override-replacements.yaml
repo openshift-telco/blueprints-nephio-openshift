@@ -1,0 +1,31 @@
+apiVersion: fn.kpt.dev/v1alpha1
+kind: ApplyReplacements
+metadata:
+  name: replacements-klusterlet-config
+  annotations:
+    config.kubernetes.io/local-config: "true"
+replacements:
+- source:
+    kind: KlusterletAddonConfig
+    fieldPath: spec.applicationManager.enabled
+  targets:
+  - select:
+      enabled: true
+- source:
+    kind: KlusterletAddonConfig
+    fieldPath: spec.policyController.enabled
+  targets:
+  - select:
+      enabled: true
+- source:
+    kind: KlusterletAddonConfig
+    fieldPath: spec.certPolicyController.enabled
+  targets:
+  - select:
+      enabled: true
+- source:
+    kind: KlusterletAddonConfig
+    fieldPath: spec.iamPolicyController.enabled
+  targets:
+  - select:
+      enabled: true
