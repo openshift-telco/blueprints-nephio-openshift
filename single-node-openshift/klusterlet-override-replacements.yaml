@@ -41,3 +41,13 @@ replacements:
       kind: KlusterletAddonConfig
     fieldPaths:
     - spec.policyController.enabled
+- source:
+    kind: ConfigMap
+    name: klusterlet-context
+    fieldPath: data.enabled
+  targets:
+  - select:
+      kind: KlusterletAddonConfig
+    fieldPaths:
+    - spec.searchCollector.enabled
+    
