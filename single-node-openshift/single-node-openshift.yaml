@@ -36,5 +36,3 @@ spec:
       bootMACAddress: "" # kpt-set: ${bmc-boot-mac-address}
       rootDeviceHints:
         deviceName: "/dev/vda"
-    crTemplates:
-      KlusterletAddonConfig: KlusterletAddonConfigOverride.yaml
