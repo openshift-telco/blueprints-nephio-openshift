@@ -8,7 +8,7 @@ spec:
   upstream:
     repo: openshift-packages-main
     package: single-node-openshift
-    revision: main
+    revision: r2
   downstream:
     package: example # kpt-set: ${cluster-name}-cluster
     repo: management
