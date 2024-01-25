@@ -14,7 +14,5 @@ pipeline:
     configPath: setters.yaml
   - image: quay.io/adetalho/siteconfig-gen-fn:4.13
     configPath: single-node-openshift.yaml
-  - image: quay.io/adetalho/policy-gen-fn:4.13
-    configPath: policy-common-ran.yaml
   - image: gcr.io/kpt-fn/apply-replacements:v0.1.1
     configPath: klusterlet-override-replacements.yaml
