@@ -10,7 +10,7 @@ spec:
   content: Package
   deployment: false
   git:
-    branch: main
+    branch: r2 
     directory: /
-    repo: https://github.com/aprincipRedhat/blueprints-nephio-openshift.git
+    repo: https://github.com/openshift-telco/blueprints-nephio-openshift
   type: git

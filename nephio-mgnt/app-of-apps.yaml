@@ -9,8 +9,8 @@ spec:
   project: default
   source:
     path: nephio-mgnt/helm
-    repoURL: https://gitlab.consulting.redhat.com/telus-nephio/nephio-v1-infra.git
-    targetRevision: main
+    repoURL: https://github.com/openshift-telco/blueprints-nephio-openshift 
+    targetRevision: r2
   syncPolicy:
     automated:
       prune: false
