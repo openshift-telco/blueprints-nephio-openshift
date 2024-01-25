@@ -6,3 +6,4 @@ metadata:
     config.kubernetes.io/local-config: "true"
 data:
   enabled: true
+  vendor: OpenShift

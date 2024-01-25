@@ -50,4 +50,13 @@ replacements:
       kind: KlusterletAddonConfig
     fieldPaths:
     - spec.searchCollector.enabled
+- source:
+    kind: ConfigMap
+    name: klusterlet-context
+    fieldPath: data.vendor
+  targets:
+  - select:
+      kind: KlusterletAddonConfig
+    fieldPaths:
+    - spec.clusterLabels.vendor
     
