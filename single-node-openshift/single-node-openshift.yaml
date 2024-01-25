@@ -15,7 +15,6 @@ spec:
   - clusterName: "" # kpt-set: ${cluster-name}
     networkType: "OVNKubernetes"
     clusterLabels:
-      cluster.open-cluster-management.io/clusterset: managed-clusters
       sites: "" # kpt-set: ${cluster-name}
       common: "true"
     clusterNetwork:
