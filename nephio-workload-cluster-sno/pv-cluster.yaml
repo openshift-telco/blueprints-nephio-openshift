@@ -2,6 +2,7 @@ apiVersion: config.porch.kpt.dev/v1alpha1
 kind: PackageVariant
 metadata:
   name: example-cluster  # kpt-set: ${cluster-name}-cluster
+  namespace: example
 spec:
   annotations:
     approval.nephio.org/policy: initial

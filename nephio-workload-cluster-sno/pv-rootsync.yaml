@@ -2,6 +2,7 @@ apiVersion: config.porch.kpt.dev/v1alpha1
 kind: PackageVariant
 metadata:
   name: example-rootsync # kpt-set: ${cluster-name}-rootsync
+  namespace: example
 spec:
   annotations:
     approval.nephio.org/policy: initial
