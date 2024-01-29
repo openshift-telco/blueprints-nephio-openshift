@@ -5655,6 +5655,7 @@ spec:
         app: opentelemetry
         component: otel-collector
     spec:
+      serviceAccountName: otel-collector-sa
       containers:
       - args:
         - --config=/conf/otel-collector-config.yaml
