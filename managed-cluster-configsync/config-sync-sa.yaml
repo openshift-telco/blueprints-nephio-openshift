@@ -27,7 +27,7 @@ metadata:
 subjects:
   - kind: ServiceAccount
     name: resource-group-sa
-    namespace: config-management-monitoring
+    namespace: resource-group-system
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
