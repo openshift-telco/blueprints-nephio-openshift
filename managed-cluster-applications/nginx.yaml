@@ -51,7 +51,7 @@ spec:
             - values.yaml
         path: 'helm-packagevariant'
         repoURL: https://github.com/openshift-telco/blueprints-nephio-openshift.git
-        targetRevision: main
+        targetRevision: r2
       project: nephio-managed-gitops
       syncPolicy:
         syncOptions:
