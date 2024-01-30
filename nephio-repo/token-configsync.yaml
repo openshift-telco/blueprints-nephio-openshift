@@ -1,8 +1,0 @@
-apiVersion: infra.nephio.org/v1alpha1
-kind: Token
-metadata: 
-  name: example-repo-access-token-configsync
-  namespace: default
-  annotations:
-    nephio.org/app: configsync
-spec: {}

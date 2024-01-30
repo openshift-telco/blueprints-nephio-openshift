@@ -3,6 +3,8 @@ kind: Repository
 metadata:
   name: nginx-packages
   namespace: default
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   content: Package
   deployment: false
