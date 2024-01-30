@@ -49,7 +49,7 @@ spec:
               value: "main"
           valueFiles:
             - values.yaml
-        path: 'managed-clusters/managed-cluster-nginx'
+        path: 'helm-packagevariant'
         repoURL: https://github.com/openshift-telco/blueprints-nephio-openshift.git
         targetRevision: main
       project: nephio-managed-gitops
