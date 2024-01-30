@@ -1,0 +1,13 @@
+apiVersion: configsync.gke.io/v1beta1
+kind: RootSync
+metadata: 
+  name: management-cluster
+  namespace: config-management-system
+spec:
+  sourceFormat: unstructured
+  git:
+    repo: http://gitea.gitea.svc.cluster.local:3000/gitea/management.git
+    branch: main
+    auth: token
+    secretRef:
+      name: management-repo-access-token-configsync

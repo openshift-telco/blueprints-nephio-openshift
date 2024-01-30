@@ -1,0 +1,15 @@
+apiVersion: config.porch.kpt.dev/v1alpha1
+kind: PackageVariant
+metadata:
+  name: {{ .Values.clusterName }}-{{.Values.appName}}
+  namespace: default
+spec:
+  annotations:
+    approval.nephio.org/policy: initial
+  upstream:
+    repo: {{.Values.upstreamRepoName}}
+    package: {{.Values.appName}}
+    revision: {{.Values.upstreamBranch}}
+  downstream:
+    package: {{ .Values.clusterName }}-{{.Values.appName}}
+    repo: {{ .Values.clusterName }}

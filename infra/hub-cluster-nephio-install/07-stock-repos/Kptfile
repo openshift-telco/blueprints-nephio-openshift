@@ -1,0 +1,20 @@
+apiVersion: kpt.dev/v1
+kind: Kptfile
+metadata:
+  name: stock-repos
+  namespace: openshift-gitops
+  annotations:
+    config.kubernetes.io/local-config: "true"
+upstream:
+  type: git
+  git:
+    repo: https://github.com/nephio-project/nephio-example-packages.git
+    directory: nephio-stock-repos
+    ref: v1.0.1
+info:
+  description: Some stock external repositories to start with
+pipeline:
+  mutators:
+    - image: gcr.io/kpt-fn/set-namespace:v0.4.1
+      configMap:
+        namespace: default

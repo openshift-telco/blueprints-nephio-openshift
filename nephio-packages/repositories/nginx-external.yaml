@@ -1,0 +1,13 @@
+apiVersion: config.porch.kpt.dev/v1alpha1
+kind: Repository
+metadata:
+  name: nginx-packages
+  namespace: default
+spec:
+  content: Package
+  deployment: false
+  git:
+    branch: main
+    directory: /package-examples
+    repo: 'https://github.com/GoogleContainerTools/kpt'
+  type: git

@@ -1,0 +1,18 @@
+apiVersion: kpt.dev/v1
+kind: Kptfile
+metadata:
+  name: single-node-openshift
+  annotations:
+    config.kubernetes.io/local-config: "true"
+info:
+  description: nephio workload single node openshift cluster package
+pipeline:
+  mutators:
+  - image: gcr.io/kpt-fn/apply-replacements:v0.1.1
+    configPath: apply-replacements.yaml
+  - image: gcr.io/kpt-fn/apply-setters:v0.2.0
+    configPath: setters.yaml
+  - image: quay.io/adetalho/siteconfig-gen-fn:4.13
+    configPath: single-node-openshift.yaml
+  - image: gcr.io/kpt-fn/apply-replacements:v0.1.1
+    configPath: klusterlet-override-replacements.yaml

@@ -1,0 +1,62 @@
+---
+apiVersion: apps.open-cluster-management.io/v1
+kind: PlacementRule
+metadata:
+  name: nginx-placement
+  namespace: openshift-gitops
+  annotations:
+    argocd.argoproj.io/sync-wave: "19"
+spec:
+  clusterSelector:
+    matchExpressions:
+      - key: cluster.open-cluster-management.io/clusterset
+        operator: In
+        values:
+          - 'managed-clusters'
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: nginx-managed-clusters
+  namespace: openshift-gitops
+  annotations:
+    argocd.argoproj.io/sync-wave:  "20"
+spec:
+  generators:
+    - clusterDecisionResource:
+        configMapRef: nephio-placement
+        name: nginx-placement
+        requeueAfterSeconds: 30
+  template:
+    metadata:
+      name: '{{clusterName}}-nginx'
+    spec:
+      destination:
+        namespace: openshift-gitops
+        server: 'https://kubernetes.default.svc'
+      source:
+        helm: 
+          parameters:
+            - name: clusterName
+              value: '{{clusterName}}'
+            - name: appName
+              value: "nginx"
+            - name: upstreamRepoName
+              value: nginx-packages
+            - name: upstreamBranch
+              value: "main"
+          valueFiles:
+            - values.yaml
+        path: 'managed-clusters/managed-cluster-nginx'
+        repoURL: https://github.com/openshift-telco/blueprints-nephio-openshift.git
+        targetRevision: main
+      project: nephio-managed-gitops
+      syncPolicy:
+        syncOptions:
+        - CreateNamespace=true
+        - ServerSideApply=true
+        - Validate=false
+        - FailOnSharedResource=false
+        automated:
+          prune: true
+          selfHeal: true

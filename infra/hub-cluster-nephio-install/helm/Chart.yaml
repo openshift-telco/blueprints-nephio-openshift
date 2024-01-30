@@ -1,0 +1,4 @@
+apiVersion: v2
+description: Nephio Blueprints for OpenShift
+name: blueprints-nephio-openshift
+version: 0.0.1
