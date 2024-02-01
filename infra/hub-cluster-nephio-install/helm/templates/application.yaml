@@ -27,6 +27,8 @@ spec:
     repoURL: {{ $.Values.config.repoURL }}
     targetRevision: r2
     path: infra/hub-cluster-nephio-install/{{ $key }}
+    directory:
+      recurse: true
   syncPolicy:
     automated: 
       selfHeal: true 
