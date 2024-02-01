@@ -28,4 +28,5 @@ kpt fn eval --exec set-annotations-v0.1.4 -- \
 
 # Lastly, emit the final config by using the remove-local-config-resources
 # function which strips all local configs including Kpt files, from the output
-kpt fn eval --exec remove-local-config-resources-v0.1.0 --output unwrap
+kpt fn eval --image gcr.io/kpt-fn/remove-local-config-resources:v0.1.0 --output unwrap
+kpt fn eval --image gcr.io/kpt-fn/set-namespace:v0.4.1 --output unwrap
