@@ -2,8 +2,6 @@ config:
   repoURL: https://github.com/openshift-telco/blueprints-nephio-openshift.git 
 
 blueprints:
-  00-argocd-kpt-config:
-    enabled: true
   01-gitea:
     enabled: true
   02-configsync:
