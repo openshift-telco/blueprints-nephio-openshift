@@ -1,0 +1,52 @@
+apiVersion: fn.kpt.dev/v1alpha1
+kind: ApplyReplacements
+metadata: # kpt-merge: /propagate-values
+  name: propagate-values
+  annotations:
+    config.kubernetes.io/local-config: "true"
+    internal.kpt.dev/upstream-identifier: fn.kpt.dev|ApplyReplacements|default|propagate-values
+replacements:
+- source:
+    kind: ConfigMap
+    name: kptfile.kpt.dev
+    fieldPath: data.oauth-redirect
+  targets:
+  - select:
+      kind: ServiceAccount
+    fieldPaths:
+    - metadata.annotations.[serviceaccounts.openshift.io/oauth-redirectreference.backstage]
+    options:
+      create: true
+- source:
+    kind: ConfigMap
+    name: kptfile.kpt.dev
+    fieldPath: data.mountPath
+  targets:
+  - select:
+      kind: Deployment
+    fieldPaths:
+    - spec.template.spec.containers.[name=main].volumeMounts.[name=nephio-tls].mountPath
+    options:
+      create: true
+- source:
+    kind: ConfigMap
+    name: kptfile.kpt.dev
+    fieldPath: data.secretName
+  targets:
+  - select:
+      kind: Deployment
+    fieldPaths:
+    - spec.template.spec.volumes.[name=nephio-tls].secret.secretName
+    options:
+      create: true
+- source:
+    kind: ConfigMap
+    name: kptfile.kpt.dev
+    fieldPath: data.defaultMode
+  targets:
+  - select:
+      kind: Deployment
+    fieldPaths:
+    - spec.template.spec.volumes.[name=nephio-tls].secret.defaultMode
+    options:
+      create: true
