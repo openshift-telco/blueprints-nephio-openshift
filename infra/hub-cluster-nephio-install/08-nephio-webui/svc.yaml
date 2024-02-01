@@ -1,6 +1,6 @@
 kind: Service
 apiVersion: v1
-metadata: # kpt-merge: nephio-webui/proxy
+metadata:
   name: proxy
   namespace: nephio-webui
   annotations:
