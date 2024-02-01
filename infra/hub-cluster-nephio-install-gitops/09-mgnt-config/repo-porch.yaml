@@ -1,0 +1,15 @@
+apiVersion: config.porch.kpt.dev/v1alpha1
+kind: Repository
+metadata:
+  name: management
+  namespace: default
+spec:
+  content: Package
+  deployment: true
+  git:
+    branch: main
+    directory: /
+    repo: http://gitea.gitea.svc.cluster.local:3000/gitea/management.git
+    secretRef:
+      name: management-repo-access-token-porch
+  type: git
