@@ -1,6 +1,6 @@
 apiVersion: v1
 kind: Service
-metadata:
+metadata: # kpt-merge: gitea/gitea-postgresql-hl
   name: gitea-postgresql-hl
   namespace: gitea
   labels:
@@ -12,6 +12,8 @@ metadata:
     # field is broken in some versions of Kubernetes:
     # https://github.com/kubernetes/kubernetes/issues/58662
     service.alpha.kubernetes.io/tolerate-unready-endpoints: "true"
+  annotations:
+    internal.kpt.dev/upstream-identifier: '|Service|gitea|gitea-postgresql-hl'
 spec:
   type: ClusterIP
   clusterIP: None

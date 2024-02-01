@@ -6,11 +6,13 @@ metadata: # kpt-merge: nephio-system/openshift-packages-main
   labels:
     kpt.dev/repository-access: read-only
     kpt.dev/repository-content: external-blueprints
+  annotations:
+    internal.kpt.dev/upstream-identifier: 'config.porch.kpt.dev|Repository|nephio-system|openshift-packages-main'
 spec:
   content: Package
   deployment: false
   git:
-    branch: r2 
+    branch: r2
     directory: /nephio-packages/packages
     repo: https://github.com/openshift-telco/blueprints-nephio-openshift
   type: git

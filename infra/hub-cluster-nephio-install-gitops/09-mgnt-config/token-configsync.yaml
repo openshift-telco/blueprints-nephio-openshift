@@ -1,6 +1,6 @@
 apiVersion: infra.nephio.org/v1alpha1
 kind: Token
-metadata: 
+metadata:
   name: management-repo-access-token-configsync
   namespace: config-management-system
   annotations:

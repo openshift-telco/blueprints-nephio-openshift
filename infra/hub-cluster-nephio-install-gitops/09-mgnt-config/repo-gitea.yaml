@@ -1,6 +1,6 @@
 apiVersion: infra.nephio.org/v1alpha1
 kind: Repository
-metadata: 
+metadata:
   name: management
   namespace: default
 spec:

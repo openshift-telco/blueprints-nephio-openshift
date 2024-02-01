@@ -1,11 +1,13 @@
 apiVersion: config.porch.kpt.dev/v1alpha1
 kind: Repository
-metadata:
+metadata: # kpt-merge: default/free5gc-packages
   name: free5gc-packages
   namespace: default
   labels:
     kpt.dev/repository-access: read-only
     kpt.dev/repository-content: external-blueprints
+  annotations:
+    internal.kpt.dev/upstream-identifier: 'config.porch.kpt.dev|Repository|default|free5gc-packages'
 spec:
   content: Package
   deployment: false

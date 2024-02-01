@@ -1,11 +1,13 @@
 apiVersion: apps/v1
 kind: Deployment
-metadata:
+metadata: # kpt-merge: gitea/gitea-memcached
   name: gitea-memcached
   namespace: gitea
   labels:
     app.kubernetes.io/name: memcached
     app.kubernetes.io/instance: gitea
+  annotations:
+    internal.kpt.dev/upstream-identifier: 'apps|Deployment|gitea|gitea-memcached'
 spec:
   selector:
     matchLabels:

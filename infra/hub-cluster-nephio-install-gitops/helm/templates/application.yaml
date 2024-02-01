@@ -26,7 +26,7 @@ spec:
   source:
     repoURL: {{ $.Values.config.repoURL }}
     targetRevision: r2
-    path: infra/hub-cluster-nephio-install-gitops/{{ $key }}
+    path: infra/hub-cluster-nephio-install/{{ $key }}
   syncPolicy:
     automated: 
       selfHeal: true 

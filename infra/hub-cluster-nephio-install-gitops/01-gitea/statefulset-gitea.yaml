@@ -1,12 +1,14 @@
 apiVersion: apps/v1
 kind: StatefulSet
-metadata:
+metadata: # kpt-merge: gitea/gitea
   name: gitea
   namespace: gitea
   labels:
     app: gitea
     app.kubernetes.io/name: gitea
     app.kubernetes.io/instance: gitea
+  annotations:
+    internal.kpt.dev/upstream-identifier: 'apps|StatefulSet|gitea|gitea'
 spec:
   replicas: 1
   selector:
