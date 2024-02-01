@@ -3,7 +3,7 @@ config:
 
 blueprints:
   00-argocd-kpt-config:
-    enabled: true
+    enabled: false
   01-gitea:
     enabled: true
   02-configsync:
