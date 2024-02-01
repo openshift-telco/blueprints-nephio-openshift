@@ -13,10 +13,14 @@
 # limitations under the License.
 apiVersion: v1
 kind: Namespace
-metadata:
+metadata: # kpt-merge: /porch-system
   name: porch-system
+  annotations:
+    internal.kpt.dev/upstream-identifier: '|Namespace|default|porch-system'
 ---
 apiVersion: v1
 kind: Namespace
-metadata:
+metadata: # kpt-merge: /porch-fn-system
   name: porch-fn-system
+  annotations:
+    internal.kpt.dev/upstream-identifier: '|Namespace|default|porch-fn-system'

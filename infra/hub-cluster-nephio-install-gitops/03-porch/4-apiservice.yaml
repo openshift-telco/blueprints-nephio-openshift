@@ -13,8 +13,10 @@
 # limitations under the License.
 apiVersion: apiregistration.k8s.io/v1
 kind: APIService
-metadata:
+metadata: # kpt-merge: /v1alpha1.porch.kpt.dev
   name: v1alpha1.porch.kpt.dev
+  annotations:
+    internal.kpt.dev/upstream-identifier: 'apiregistration.k8s.io|APIService|default|v1alpha1.porch.kpt.dev'
 spec:
   insecureSkipTLSVerify: true
   group: porch.kpt.dev

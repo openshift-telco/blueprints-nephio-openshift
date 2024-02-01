@@ -13,8 +13,10 @@
 # limitations under the License.
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
-metadata:
+metadata: # kpt-merge: /sample-apiserver-clusterrolebinding
   name: sample-apiserver-clusterrolebinding
+  annotations:
+    internal.kpt.dev/upstream-identifier: 'rbac.authorization.k8s.io|ClusterRoleBinding|default|sample-apiserver-clusterrolebinding'
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -26,9 +28,11 @@ subjects:
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
-metadata:
+metadata: # kpt-merge: porch-system/sample-apiserver-rolebinding
   name: sample-apiserver-rolebinding
   namespace: porch-system
+  annotations:
+    internal.kpt.dev/upstream-identifier: 'rbac.authorization.k8s.io|RoleBinding|porch-system|sample-apiserver-rolebinding'
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
@@ -40,9 +44,11 @@ subjects:
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
-metadata:
+metadata: # kpt-merge: porch-fn-system/porch-function-executor
   name: porch-function-executor
   namespace: porch-fn-system
+  annotations:
+    internal.kpt.dev/upstream-identifier: 'rbac.authorization.k8s.io|RoleBinding|porch-fn-system|porch-function-executor'
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role

@@ -13,9 +13,11 @@
 # limitations under the License.
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
-metadata:
+metadata: # kpt-merge: kube-system/porch-auth-reader
   name: porch-auth-reader
   namespace: kube-system
+  annotations:
+    internal.kpt.dev/upstream-identifier: 'rbac.authorization.k8s.io|RoleBinding|kube-system|porch-auth-reader'
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role

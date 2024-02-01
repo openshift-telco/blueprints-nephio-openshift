@@ -13,17 +13,21 @@
 # limitations under the License.
 kind: ServiceAccount
 apiVersion: v1
-metadata:
+metadata: # kpt-merge: porch-system/porch-controllers
   name: porch-controllers
   namespace: porch-system
+  annotations:
+    internal.kpt.dev/upstream-identifier: '|ServiceAccount|porch-system|porch-controllers'
 ---
 apiVersion: apps/v1
 kind: Deployment
-metadata:
+metadata: # kpt-merge: porch-system/porch-controllers
   name: porch-controllers
   namespace: porch-system
   labels:
     k8s-app: porch-controllers
+  annotations:
+    internal.kpt.dev/upstream-identifier: 'apps|Deployment|porch-system|porch-controllers'
 spec:
   replicas: 1
   selector:
@@ -38,7 +42,7 @@ spec:
       containers:
       - name: porch-controllers
         # Update to the image of your porch-controllers build.
-        image: gcr.io/kpt-dev/porch-controllers:v0.0.27
+        image: gcr.io/kpt-dev/porch-controllers:v0.0.20
         # Note: only the existence of the variable matters for enabling the reconciler
         # So, be sure to remove the var not just change the value to false
         env:

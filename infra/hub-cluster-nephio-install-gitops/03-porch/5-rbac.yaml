@@ -13,8 +13,10 @@
 # limitations under the License.
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
-metadata:
+metadata: # kpt-merge: /aggregated-apiserver-clusterrole
   name: aggregated-apiserver-clusterrole
+  annotations:
+    internal.kpt.dev/upstream-identifier: 'rbac.authorization.k8s.io|ClusterRole|default|aggregated-apiserver-clusterrole'
 rules:
   - apiGroups:
       - ""
@@ -94,9 +96,11 @@ rules:
 ---
 kind: Role
 apiVersion: rbac.authorization.k8s.io/v1
-metadata:
+metadata: # kpt-merge: porch-system/aggregated-apiserver-role
   name: aggregated-apiserver-role
   namespace: porch-system
+  annotations:
+    internal.kpt.dev/upstream-identifier: 'rbac.authorization.k8s.io|Role|porch-system|aggregated-apiserver-role'
 rules:
   # Needed for workload identity
   - apiGroups:
@@ -114,9 +118,11 @@ rules:
 ---
 kind: Role
 apiVersion: rbac.authorization.k8s.io/v1
-metadata:
+metadata: # kpt-merge: porch-fn-system/porch-function-executor
   name: porch-function-executor
   namespace: porch-fn-system
+  annotations:
+    internal.kpt.dev/upstream-identifier: 'rbac.authorization.k8s.io|Role|porch-fn-system|porch-function-executor'
 rules:
   # Needed to launch / read function executor pods
   - apiGroups:

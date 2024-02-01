@@ -13,15 +13,19 @@
 # limitations under the License.
 kind: ServiceAccount
 apiVersion: v1
-metadata:
+metadata: # kpt-merge: porch-system/porch-fn-runner
   name: porch-fn-runner
   namespace: porch-system
+  annotations:
+    internal.kpt.dev/upstream-identifier: '|ServiceAccount|porch-system|porch-fn-runner'
 ---
 apiVersion: apps/v1
 kind: Deployment
-metadata:
+metadata: # kpt-merge: porch-system/function-runner
   name: function-runner
   namespace: porch-system
+  annotations:
+    internal.kpt.dev/upstream-identifier: 'apps|Deployment|porch-system|function-runner'
 spec:
   replicas: 2
   selector:
@@ -35,7 +39,7 @@ spec:
       serviceAccountName: porch-fn-runner
       containers:
         - name: function-runner
-          image: gcr.io/kpt-dev/porch-function-runner:v0.0.27
+          image: gcr.io/kpt-dev/porch-function-runner:v0.0.20
           imagePullPolicy: IfNotPresent
           command:
             - /server
@@ -44,7 +48,7 @@ spec:
             - --pod-namespace=porch-fn-system
           env:
             - name: WRAPPER_SERVER_IMAGE
-              value: gcr.io/kpt-dev/porch-wrapper-server:v0.0.27
+              value: gcr.io/kpt-dev/porch-wrapper-server:v0.0.20
           ports:
             - containerPort: 9445
           # Add grpc readiness probe to ensure the cache is ready
@@ -68,9 +72,11 @@ spec:
 ---
 apiVersion: v1
 kind: Service
-metadata:
+metadata: # kpt-merge: porch-system/function-runner
   name: function-runner
   namespace: porch-system
+  annotations:
+    internal.kpt.dev/upstream-identifier: '|Service|porch-system|function-runner'
 spec:
   selector:
     app: function-runner
@@ -81,9 +87,11 @@ spec:
 ---
 apiVersion: v1
 kind: ConfigMap
-metadata:
+metadata: # kpt-merge: porch-system/pod-cache-config
   name: pod-cache-config
   namespace: porch-system
+  annotations:
+    internal.kpt.dev/upstream-identifier: '|ConfigMap|porch-system|pod-cache-config'
 data:
   pod-cache-config.yaml: |
     gcr.io/kpt-fn/apply-replacements:v0.1.1: 30m
