@@ -1,5 +1,7 @@
 config:
   repoURL: https://github.com/openshift-telco/blueprints-nephio-openshift.git
+  targetRevision: r2.0
+
 
 blueprints:
   00-argocd-kpt-config:
