@@ -1,0 +1,38 @@
+{{- $c := 1 | int64 }}
+{{- range $key,$val := .Values.blueprints }}
+{{- if $val.enabled }}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nephio-{{ $key }}
+  namespace: openshift-gitops
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  annotations:
+    argocd.argoproj.io/compare-options: IgnoreExtraneous
+    argocd.argoproj.io/sync-wave: {{ quote $c |}}
+spec:
+  project: default
+  destination:
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: {{ $.Values.config.repoURL }}
+    targetRevision: {{ $.Values.config.targetRevision }}
+    path: nephio-mgnt/{{ $key }}
+  syncPolicy:
+    automated: 
+      selfHeal: true 
+      allowEmpty: true
+    syncOptions:
+      - Validate=true
+      - CreateNamespace=true
+    retry:
+      limit: -1
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+{{- end }}
+{{ $c = add1 $c }}
+{{- end }}
