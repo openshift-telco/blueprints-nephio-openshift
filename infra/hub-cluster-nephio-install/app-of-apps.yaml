@@ -10,7 +10,7 @@ spec:
   source:
     path: nephio-mgnt/helm
     repoURL: https://github.com/openshift-telco/blueprints-nephio-openshift.git
-    targetRevision: main
+    targetRevision: r2.0
   syncPolicy:
     automated:
       prune: false
