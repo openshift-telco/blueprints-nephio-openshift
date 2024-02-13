@@ -1,18 +1,18 @@
 apiVersion: config.porch.kpt.dev/v1alpha1
 kind: Repository
-metadata: # kpt-merge: default/openshift-packages-main
-  name: openshift-packages-main
+metadata: # kpt-merge: default/oai-core-packages
+  name: oai-core-packages
   namespace: default
   labels:
     kpt.dev/repository-access: read-only
     kpt.dev/repository-content: external-blueprints
   annotations:
-    internal.kpt.dev/upstream-identifier: 'config.porch.kpt.dev|Repository|default|openshift-packages-main'
+    internal.kpt.dev/upstream-identifier: 'config.porch.kpt.dev|Repository|default|oai-core-packages'
 spec:
   content: Package
   deployment: false
   git:
     branch: main
     directory: /
-    repo: https://github.com/openshift-telco/blueprints-nephio-openshift.git
+    repo: https://github.com/OPENAIRINTERFACE/oai-packages.git
   type: git

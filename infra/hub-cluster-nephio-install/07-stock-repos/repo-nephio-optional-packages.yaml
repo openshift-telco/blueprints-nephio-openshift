@@ -1,18 +1,18 @@
 apiVersion: config.porch.kpt.dev/v1alpha1
 kind: Repository
-metadata: # kpt-merge: default/catalog-workloads-free5gc
-  name: catalog-workloads-free5gc
+metadata: # kpt-merge: default/catalog-nephio-optional
+  name: catalog-nephio-optional
   namespace: default
   labels:
     kpt.dev/repository-access: read-only
     kpt.dev/repository-content: external-blueprints
   annotations:
-    internal.kpt.dev/upstream-identifier: 'config.porch.kpt.dev|Repository|default|catalog-workloads-free5gc'
+    internal.kpt.dev/upstream-identifier: 'config.porch.kpt.dev|Repository|default|catalog-nephio-optional'
 spec:
   content: Package
   deployment: false
   git:
     branch: main
-    directory: /workloads/free5gc
+    directory: /nephio/optional
     repo: https://github.com/nephio-project/catalog.git
   type: git

@@ -13,32 +13,20 @@ metadata:
     argocd.argoproj.io/compare-options: IgnoreExtraneous
     argocd.argoproj.io/sync-wave: {{ quote $c |}}
 spec:
-{{- if eq $key "01-gitea" }}
-  ignoreDifferences:
-  - group: "*"
-    kind: StatefulSet
-    jsonPointers:
-    - /spec/volumeClaimTemplates
-{{ end }}
   project: default
   destination:
     server: https://kubernetes.default.svc
   source:
     repoURL: {{ $.Values.config.repoURL }}
-    targetRevision: r2
-    path: infra/hub-cluster-nephio-install/{{ $key }}
-    directory:
-      recurse: true
+    targetRevision: main
+    path: nephio-mgnt/{{ $key }}
   syncPolicy:
     automated: 
       selfHeal: true 
       allowEmpty: true
-      prune: true
     syncOptions:
-      - Validate=false
-      - ServerSideApply=true
+      - Validate=true
       - CreateNamespace=true
-      - RespectIgnoreDifferences=true
     retry:
       limit: -1
       backoff:
