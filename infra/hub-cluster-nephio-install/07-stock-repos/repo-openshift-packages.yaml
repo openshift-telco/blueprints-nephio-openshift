@@ -12,7 +12,7 @@ spec:
   content: Package
   deployment: false
   git:
-    branch: main
-    directory: /
+    branch: r2.0 
+    directory: /nephio-packages/packages
     repo: https://github.com/openshift-telco/blueprints-nephio-openshift.git
   type: git
