@@ -4,7 +4,7 @@ metadata: # kpt-merge: nephio-webui/nephio-webui
   name: nephio-webui
   namespace: nephio-webui
   annotations:
-    internal.kpt.dev/upstream-identifier: 'apps|Deployment|nephio-webui|nephio-webui'
+    internal.kpt.dev/upstream-identifier: apps|Deployment|nephio-webui|nephio-webui
 spec:
   replicas: 1
   selector:
@@ -30,6 +30,8 @@ spec:
         volumeMounts:
         - name: config-volume
           mountPath: /etc/config
+        - name: nephio-tls
+          mountPath: /tmp/fakepath
         readinessProbe:
           httpGet:
             path: /
@@ -39,7 +41,38 @@ spec:
           value: current-context
         - name: AUTH_OIDC_TOKEN_PROVIDER
           value: okta
+      - args:
+        - -provider=openshift
+        - -https-address=:8443
+        - -http-address=
+        - -email-domain=*
+        - -upstream=http://localhost:7007
+        - -tls-cert=/etc/tls/private/tls.crt
+        - -tls-key=/etc/tls/private/tls.key
+        - -cookie-secret="KVgwiyRNt_deA_shUsVgoQ=="
+        - -openshift-service-account=nephio-webui-sa
+        - -skip-auth-regex=^/metrics
+        - -skip-provider-button
+        - -request-logging=true
+        image: registry.redhat.io/openshift4/ose-oauth-proxy:v4.12
+        imagePullPolicy: IfNotPresent
+        name: oauth-proxy
+        ports:
+        - containerPort: 8443
+          name: oauth-proxy
+          protocol: TCP
+        securityContext:
+          capabilities:
+            drop:
+            - MKNOD
+        volumeMounts:
+        - mountPath: /etc/tls/private
+          name: nephio-tls
       volumes:
       - name: config-volume
         configMap:
           name: nephio-webui-config
+      - name: nephio-tls
+        secret:
+          secretName: nephio-tls
+          defaultMode: 420
