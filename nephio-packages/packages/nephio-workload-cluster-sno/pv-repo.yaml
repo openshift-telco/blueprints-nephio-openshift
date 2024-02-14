@@ -9,7 +9,7 @@ spec:
   upstream:
     repo: openshift-packages-main
     package: nephio-repo
-    revision: r2
+    revision: r2.0
   downstream:
     package: example-repo # kpt-set: ${cluster-name}-repo
     repo: management
