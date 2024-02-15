@@ -25,3 +25,6 @@ subjects:
 - kind: ServiceAccount
   name: porch-controllers
   namespace: porch-system
+- kind: ServiceAccount
+  name: porch-server
+  namespace: porch-system
