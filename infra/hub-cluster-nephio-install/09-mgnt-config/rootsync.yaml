@@ -6,7 +6,7 @@ metadata:
 spec:
   sourceFormat: unstructured
   git:
-    repo: http://gitea.gitea.svc.cluster.local:3000/gitea/management.git
+    repo: http://gitea.gitea.svc.cluster.local:3000/gitea/mgmt.git
     branch: main
     auth: token
     secretRef:

@@ -12,7 +12,7 @@ spec:
     revision: r2.0
   downstream:
     package: example # kpt-set: ${cluster-name}-cluster
-    repo: management
+    repo: mgmt 
   injectors:
   - kind: ConfigMap
     name: example

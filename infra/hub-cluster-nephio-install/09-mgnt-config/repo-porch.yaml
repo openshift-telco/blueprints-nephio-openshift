@@ -9,7 +9,7 @@ spec:
   git:
     branch: main
     directory: /
-    repo: http://gitea.gitea.svc.cluster.local:3000/gitea/management.git
+    repo: http://gitea.gitea.svc.cluster.local:3000/gitea/mgmt.git
     secretRef:
       name: management-repo-access-token-porch
   type: git

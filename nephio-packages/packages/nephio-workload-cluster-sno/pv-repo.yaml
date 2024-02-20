@@ -12,7 +12,7 @@ spec:
     revision: r2.0
   downstream:
     package: example-repo # kpt-set: ${cluster-name}-repo
-    repo: management
+    repo: mgmt 
   injectors:
   - kind: WorkloadCluster
     name: example # kpt-set: ${cluster-name}
