@@ -1,0 +1,48 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: lvm-disk-cleanup-job
+  namespace: default 
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: lvm-disk-cleanup-job
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+  - kind: ServiceAccount
+    name: lvm-disk-cleanup-job
+    namespace: default 
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: lvm-disk-cleanup
+  namespace: default 
+  annotations:
+    argocd.argoproj.io/sync-wave:  "-1"
+spec:
+  template:
+    spec:
+      containers:
+        - image: quay.io/openshift/origin-cli:4.14.0
+          command:
+            - /bin/bash
+            - -x
+            - -c
+            - |
+              NODE=$(oc get node --no-headers | awk '{print $1}')
+              oc debug node/$NODE -- bash -c "chroot /host vgremove -f -y vg1"
+              DISK=$(oc debug node/$NODE -- bash -c 'chroot /host pvdisplay' | grep 'PV Name' | awk '{print $3}')
+              oc debug node/$NODE -- bash -c "chroot /host pvremove -f $DISK"
+          imagePullPolicy: Always
+          name: lvm-disk-cleanup
+      dnsPolicy: ClusterFirst
+      restartPolicy: OnFailure
+      serviceAccount: lvm-disk-cleanup-job
+      serviceAccountName: lvm-disk-cleanup-job
+      terminationGracePeriodSeconds: 30
