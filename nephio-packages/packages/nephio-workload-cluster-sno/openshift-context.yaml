@@ -17,3 +17,4 @@ data:
   bmc-username: example
   bmc-password: example
   bmc-boot-mac-address: example
+  site-type: example
