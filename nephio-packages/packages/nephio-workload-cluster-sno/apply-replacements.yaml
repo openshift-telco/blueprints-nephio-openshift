@@ -134,3 +134,13 @@ replacements:
       kind: PackageVariant
     fieldPaths:
     - spec.injectors.[kind=ConfigMap].name
+- source:
+    kind: ConfigMap
+    name: openshift-context
+    fieldPath: data.site-type
+  targets:
+  - select:
+      kind: ConfigMap
+      name: setters
+    fieldPaths:
+    - data.site-type
