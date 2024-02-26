@@ -18,6 +18,7 @@ spec:
       cluster.open-cluster-management.io/clusterset: managed-clusters
       sites: "" # kpt-set: ${cluster-name}
       common: "true"
+      nephio.org/site-type: "" # kpt-set: ${site-type}
     clusterNetwork:
     - cidr: "10.128.0.0/14"
       hostPrefix: 23
