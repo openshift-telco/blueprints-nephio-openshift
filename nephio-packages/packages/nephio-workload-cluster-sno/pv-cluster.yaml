@@ -21,4 +21,4 @@ spec:
     - image: gcr.io/kpt-fn/set-annotations:v0.1.4
       configMap:
         nephio.org/cluster-name: example
-        nephio.org/site-type: example  # kpt-set: ${site-type}
+        nephio.org/site-type: example
