@@ -12,7 +12,7 @@ spec:
   content: Package
   deployment: false
   git:
-    branch: r2 
+    branch: openshift 
     directory: /
     repo: https://github.com/OPENAIRINTERFACE/oai-packages.git
   type: git
