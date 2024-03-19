@@ -6,7 +6,6 @@ metadata: # kpt-merge: nephio-webui/nephio-webui
   annotations:
     internal.kpt.dev/upstream-identifier: '|Service|nephio-webui|nephio-webui'
 spec:
-  type: LoadBalancer
   selector:
     app: nephio-webui
   ports:
