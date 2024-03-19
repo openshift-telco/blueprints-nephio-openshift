@@ -36,11 +36,6 @@ spec:
           httpGet:
             path: /
             port: 7007
-        env:
-        - name: AUTH_PROVIDER
-          value: current-context
-        - name: AUTH_OIDC_TOKEN_PROVIDER
-          value: okta
       - args:
         - -provider=openshift
         - -https-address=:8443
