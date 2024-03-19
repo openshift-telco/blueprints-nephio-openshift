@@ -11,4 +11,4 @@ spec:
     name: nephio-webui 
     weight: 100
   tls:
-    termination: reencrypt
+    termination: edge
