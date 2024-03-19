@@ -12,3 +12,6 @@ spec:
     - name: http
       port: 7007
       targetPort: http
+  tls:
+    termination: edge
+  wildcardPolicy: None
