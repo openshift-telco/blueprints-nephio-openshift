@@ -8,7 +8,6 @@ metadata: # kpt-merge: nephio-webui/nephio-webui
     app.kubernetes.io/name: nephio-webui
     app.kubernetes.io/instance: nephio-webui
   annotations:
-    metallb.universe.tf/loadBalancerIPs: 172.18.0.201
     internal.kpt.dev/upstream-identifier: '|Service|nephio-webui|nephio-webui'
 spec:
   type: LoadBalancer
