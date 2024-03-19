@@ -3,10 +3,6 @@ kind: Service
 metadata: # kpt-merge: nephio-webui/nephio-webui
   name: nephio-webui
   namespace: nephio-webui
-  labels:
-    app: nephio-webui
-    app.kubernetes.io/name: nephio-webui
-    app.kubernetes.io/instance: nephio-webui
   annotations:
     internal.kpt.dev/upstream-identifier: '|Service|nephio-webui|nephio-webui'
 spec:
