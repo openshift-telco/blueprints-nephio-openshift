@@ -30,8 +30,6 @@ spec:
         volumeMounts:
         - name: config-volume
           mountPath: /etc/config
-        - name: nephio-tls
-          mountPath: /tmp/fakepath
         readinessProbe:
           httpGet:
             path: /
