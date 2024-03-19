@@ -8,7 +8,7 @@ metadata: # kpt-merge: nephio-webui/nephio
 spec:
   to:
     kind: Service
-    name: proxy
+    name: nephio-webui 
     weight: 100
   tls:
     termination: reencrypt
