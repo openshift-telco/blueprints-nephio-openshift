@@ -40,7 +40,3 @@ spec:
       - name: config-volume
         configMap:
           name: nephio-webui-config
-      - name: nephio-tls
-        secret:
-          secretName: nephio-tls
-          defaultMode: 420
